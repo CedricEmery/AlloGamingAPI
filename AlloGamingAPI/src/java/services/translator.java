@@ -6,23 +6,18 @@
 
 package services;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import net.sf.json.JSON;
-import net.sf.json.JSONObject;
-import net.sf.json.xml.XMLSerializer;
 import org.apache.commons.io.IOUtils;
+import org.json.XML;
 
 
 /**
@@ -79,9 +74,6 @@ public class translator {
     
     public String getXMLfromJson(URL url) throws MalformedURLException 
     {
-        url = new URL("http://thegamesdb.net/api/GetGamesList.php?name=x-men");
-        
-        InputStream inputStream = null;
         System.out.println(url.toString());
         
         try
@@ -94,13 +86,11 @@ public class translator {
             System.out.println("flux XML");
             System.out.println(xml);
             
-            //JSONObject jsonObj = XML.toJSONObject(xml);
-            
-            JSON objJson = new XMLSerializer().read(xml);
+            org.json.JSONObject jsonObj = XML.toJSONObject(xml);
             
             System.out.println("read ok");
-            System.out.println(objJson);
-            String JSONData = objJson.toString(2);
+            System.out.println(jsonObj);
+            String JSONData = jsonObj.toString(4);
             System.out.println("flux Json");
             System.out.println(JSONData);
             
@@ -109,22 +99,6 @@ public class translator {
         catch(IOException e)
         {
             e.printStackTrace();
-        }
-        finally
-        {
-            try 
-            {
-                if (inputStream != null) 
-                {
-                    inputStream.close();
-                }
-                url = null;
-                
-                return null;
-            } 
-            catch (IOException ex) 
-            {
-            }
         }
         return null;
     }

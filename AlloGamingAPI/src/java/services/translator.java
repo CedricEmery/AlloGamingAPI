@@ -6,18 +6,24 @@
 
 package services;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import net.sf.json.JSON;
+import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 import org.apache.commons.io.IOUtils;
+
 
 /**
  *
@@ -71,16 +77,33 @@ public class translator {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/PlatformGames.php?platform="+ URLEncoder.encode(sPlatformName,"UTF-8")));
     }
     
-    public String getXMLfromJson(URL url) 
+    public String getXMLfromJson(URL url) throws MalformedURLException 
     {
+        url = new URL("http://thegamesdb.net/api/GetGamesList.php?name=x-men");
+        
         InputStream inputStream = null;
+        System.out.println(url.toString());
         
         try
         {
-            inputStream = url.openStream();
-            String xml = IOUtils.toString(inputStream);
+            HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
+  
+            String xml = IOUtils.toString(httpcon.getInputStream());
+            
+            System.out.println("flux XML");
+            System.out.println(xml);
+            
+            //JSONObject jsonObj = XML.toJSONObject(xml);
+            
             JSON objJson = new XMLSerializer().read(xml);
+            
+            System.out.println("read ok");
+            System.out.println(objJson);
             String JSONData = objJson.toString(2);
+            System.out.println("flux Json");
+            System.out.println(JSONData);
+            
             return JSONData;
         }
         catch(IOException e)

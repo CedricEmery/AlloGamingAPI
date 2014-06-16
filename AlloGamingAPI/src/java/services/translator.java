@@ -7,7 +7,6 @@
 package services;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -31,19 +30,21 @@ public class translator {
      * This is a sample web service operation
      */
     @WebMethod(operationName = "GetGamesList")
-    public String GetGamesList(@WebParam(name = "game's name") String sGameName) throws MalformedURLException, UnsupportedEncodingException 
+    public String GetGamesList(@WebParam(name = "gameName") String sGameName) throws MalformedURLException, UnsupportedEncodingException 
     {
-        return getXMLfromJson(new URL("http://thegamesdb.net/api/GetGamesList.php?name="+ URLEncoder.encode(sGameName,"UTF-8")));
+        URL url = new URL("http://thegamesdb.net/api/GetGamesList.php?name=halo"+ URLEncoder.encode(sGameName,"UTF-8"));
+        return getXMLfromJson(url);
     }
 
     @WebMethod(operationName = "GetGame")
-    public String GetGame(@WebParam(name = "game's Id") long lGameId) throws MalformedURLException 
+    public String GetGame(@WebParam(name = "gameId") long lGameId) throws MalformedURLException 
     {
-        return getXMLfromJson(new URL("http://thegamesdb.net/api/GetGame.php?id="+ lGameId));
+        URL url = new URL("http://thegamesdb.net/api/GetGame.php?id="+ lGameId);
+        return getXMLfromJson(url);
     }
 
     @WebMethod(operationName = "GetArt")
-    public String GetArt(@WebParam(name = "art's Id") long lArtId) throws MalformedURLException 
+    public String GetArt(@WebParam(name = "artId") long lArtId) throws MalformedURLException 
     {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/GetArt.php?id="+ lArtId));
     }
@@ -55,19 +56,19 @@ public class translator {
     }
 
     @WebMethod(operationName = "GetPlatform")
-    public String GetPlatform(@WebParam(name = "platform's Id") long lPlatformId) throws MalformedURLException 
+    public String GetPlatform(@WebParam(name = "platformId") long lPlatformId) throws MalformedURLException 
     {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/GetPlatform.php?id="+ lPlatformId));
     }
 
     @WebMethod(operationName = "GetPlatformGames")
-    public String GetPlatformGames(@WebParam(name = "platform's Id") long lPlatformId) throws MalformedURLException 
+    public String GetPlatformGames(@WebParam(name = "platformId") long lPlatformId) throws MalformedURLException 
     {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/GetPlatformGames.php?platform="+ lPlatformId));
     }
 
     @WebMethod(operationName = "PlatformGames")
-    public String PlatformGames(@WebParam(name = "platform's name") String sPlatformName) throws UnsupportedEncodingException, MalformedURLException 
+    public String PlatformGames(@WebParam(name = "platformName") String sPlatformName) throws UnsupportedEncodingException, MalformedURLException 
     {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/PlatformGames.php?platform="+ URLEncoder.encode(sPlatformName,"UTF-8")));
     }

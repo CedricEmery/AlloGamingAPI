@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://services/" xmlns:tns="http://services/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="GetArt" type="tns:GetArt"/>
+
+  <xs:element name="GetArtResponse" type="tns:GetArtResponse"/>
+
+  <xs:element name="GetGame" type="tns:GetGame"/>
+
+  <xs:element name="GetGameResponse" type="tns:GetGameResponse"/>
+
+  <xs:element name="GetGamesList" type="tns:GetGamesList"/>
+
+  <xs:element name="GetGamesListResponse" type="tns:GetGamesListResponse"/>
+
+  <xs:element name="GetPlatform" type="tns:GetPlatform"/>
+
+  <xs:element name="GetPlatformResponse" type="tns:GetPlatformResponse"/>
+
+  <xs:element name="GetPlatformsList" type="tns:GetPlatformsList"/>
+
+  <xs:element name="GetPlatformsListResponse" type="tns:GetPlatformsListResponse"/>
+
+  <xs:element name="MalformedURLException" type="tns:MalformedURLException"/>
+
+  <xs:element name="PlatformGames" type="tns:PlatformGames"/>
+
+  <xs:element name="PlatformGamesResponse" type="tns:PlatformGamesResponse"/>
+
+  <xs:element name="UnsupportedEncodingException" type="tns:UnsupportedEncodingException"/>
+
+  <xs:element name="getPlatformGames" type="tns:getPlatformGames"/>
+
+  <xs:element name="getPlatformGamesResponse" type="tns:getPlatformGamesResponse"/>
+
+  <xs:element name="getXMLfromJson" type="tns:getXMLfromJson"/>
+
+  <xs:element name="getXMLfromJsonResponse" type="tns:getXMLfromJsonResponse"/>
+
+  <xs:complexType name="GetGame">
+    <xs:sequence>
+      <xs:element name="gameId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetGameResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MalformedURLException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getXMLfromJson">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:anyURI" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getXMLfromJsonResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetArt">
+    <xs:sequence>
+      <xs:element name="artId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetArtResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPlatformGames">
+    <xs:sequence>
+      <xs:element name="platformId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPlatformGamesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetGamesList">
+    <xs:sequence>
+      <xs:element name="gameName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetGamesListResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnsupportedEncodingException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PlatformGames">
+    <xs:sequence>
+      <xs:element name="platformName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PlatformGamesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetPlatformsList">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="GetPlatformsListResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetPlatform">
+    <xs:sequence>
+      <xs:element name="platformId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetPlatformResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

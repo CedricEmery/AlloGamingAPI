@@ -46,10 +46,10 @@ public class TranslatorResource {
     @GET
     @Produces("text/plain")
     @Path("GetGamesList/{gameName}")
-    public String GetGamesList(@WebParam(name = "gameName") String sGameName) throws MalformedURLException, UnsupportedEncodingException 
+    public String GetGamesList(@PathParam("gameName") String sGameName) throws MalformedURLException, UnsupportedEncodingException 
     {
         System.out.println("id : " + URLEncoder.encode(sGameName,"UTF-8"));
-        URL url = new URL("http://thegamesdb.net/api/GetGamesList.php?name=halo"+ URLEncoder.encode(sGameName,"UTF-8"));
+        URL url = new URL("http://thegamesdb.net/api/GetGamesList.php?name="+ URLEncoder.encode(sGameName,"UTF-8"));
         return getXMLfromJson(url);
     }
 
@@ -98,7 +98,7 @@ public class TranslatorResource {
     @GET
     @Produces("text/plain")
     @Path("PlatformGames/{platformName}")
-    public String PlatformGames(@WebParam(name = "platformName") String sPlatformName) throws UnsupportedEncodingException, MalformedURLException 
+    public String PlatformGames(@PathParam("platformName") String sPlatformName) throws UnsupportedEncodingException, MalformedURLException 
     {
         return getXMLfromJson(new URL("http://thegamesdb.net/api/PlatformGames.php?platform="+ URLEncoder.encode(sPlatformName,"UTF-8")));
     }
